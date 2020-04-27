@@ -56,7 +56,10 @@ const Dashboard: React.FC = () => {
       setTransactions(
         transactionResponse.map(res => ({
           ...res,
-          formattedValue: formatValue(Number(res.value)),
+          formattedValue:
+            res.type === 'outcome'
+              ? `- ${formatValue(res.value)}`
+              : formatValue(res.value),
           formattedDate: formatDate(res.created_at),
         })),
       );
